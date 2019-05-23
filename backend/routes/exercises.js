@@ -1,9 +1,9 @@
 const router = require('express').Router();
-let Excercise = require('../models/excercise.model');
+let Exercise = require('../models/exercise.model');
 
 router.route('/').get((req, res) => {
-    Excercise.find()
-        .then(excercises => res.json(excercises))
+    Exercise.find()
+        .then(exercises => res.json(exercises))
         .catch(err => res.status(400).json('error ' + err));
 });
 
@@ -13,37 +13,37 @@ router.route('/add').post((req, res) => {
     const duration = Number(req.body.duration);
     const date = Date.parse(req.body.date);
 
-    const newExcercise = new Excercise({
+    const newExercise = new Exercise({
         username, description, duration, date
     });
 
-    newExcercise.save()
-        .then(() => { res.json('excercise added!') })
+    newExercise.save()
+        .then(() => { res.json('exercise added!') })
         .catch(err => res.status(400).json('error ' + err));
 });
 
 router.route('/:id').get((req, res) => {
-    Excercise.findById(req.params.id)
-        .then(excercise => res.json(excercise))
+    Exercise.findById(req.params.id)
+        .then(exercise => res.json(exercise))
         .catch(err => res.status(400).json('error ' + err));
 });
 
 router.route('/:id').delete((req, res) => {
-    Excercise.findByIdAndDelete(req.params.id)
-        .then(() => { res.json('excercise deleted'); })
+    Exercise.findByIdAndDelete(req.params.id)
+        .then(() => { res.json('exercise deleted'); })
         .catch(err => res.status(400).json('error ' + err));
 });
 
 router.route('/update/:id').put((req, res) => {
-    Excercise.findById(req.params.id)
-        .then(excercise => {
-            excercise.username = req.body.username;
-            excercise.description = req.body.description;
-            excercise.duration = Number(req.body.duration);
-            excercise.date = Date.parse(req.body.date);
+    Exercise.findById(req.params.id)
+        .then(exercise => {
+            exercise.username = req.body.username;
+            exercise.description = req.body.description;
+            exercise.duration = Number(req.body.duration);
+            exercise.date = Date.parse(req.body.date);
 
-            excercise.save()
-                .then(() => { res.json('excercise updated!'); })
+            exercise.save()
+                .then(() => { res.json('exercise updated!'); })
                 .catch(err => res.status(400).json('error ' + err));
         })
 });
