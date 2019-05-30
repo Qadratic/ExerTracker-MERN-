@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Axios from 'axios';
 
 export default class CreateUser extends Component {
     constructor(props) {
@@ -21,7 +22,9 @@ export default class CreateUser extends Component {
             username: this.state.username,
         }
 
-        console.log(user);
+		console.log(user);
+		Axios.post('http://localhost:5000/users/add',user)
+		.then(res=>console.log(res.data));
         this.setState({
             username: ''
         });

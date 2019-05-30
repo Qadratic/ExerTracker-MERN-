@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const morgan=require('morgan');
 
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ connection.once('open', () => {
 const usersRouter=require('./routes/users');
 const exercisesRouter=require('./routes/exercises');
 
+app.use(morgan('tiny'));
 app.use('/users',usersRouter);
 app.use('/exercises',exercisesRouter);
 
