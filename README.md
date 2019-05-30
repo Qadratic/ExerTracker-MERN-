@@ -18,6 +18,11 @@ In the root folder
 npm install
 ```
 
+### Environment variables required
+
+- ATLAS_URI *(MongoDB Atlas URI)*
+- PORT *(port no.)*
+
 ## Usage
 
 In the /backend folder
